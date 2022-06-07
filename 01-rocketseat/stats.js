@@ -1,6 +1,7 @@
 
 const os = require('os')
-
+const log = require('./logger')
+//Funcão será executada a cada 1min
 setInterval(()=>{
 
     const {freemem, totalmem} = os
@@ -15,7 +16,8 @@ setInterval(()=>{
     }
    console.clear()
    console.table(stats)
-
+    log('Escrita de arquivo')
+    
 },1000)
 
  
