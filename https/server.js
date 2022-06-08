@@ -7,7 +7,7 @@ const path = require('path')
 
 
 //req - pedido
-//red - resposta
+//res - resposta
 //todos os arquivos são recebidos por uma requisição e passando pelo file
 http.createServer((req, res)=>{
     const file = req.url === '/' ? 'index.html' : req.url
