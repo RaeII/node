@@ -1,8 +1,16 @@
 {
   "urls": [
     {
-      "name": "Rockseat",
-      "url": "www.rockeseat.com.br"
+      "name": "gogle.com.br",
+      "url": "www.googe.com.br"
+    },
+    {
+      "name": "google.com.br",
+      "url": "www.goole.com.br"
+    },
+    {
+      "name": "google.com.br",
+      "url": "www.googl.com.br"
     }
   ]
 }

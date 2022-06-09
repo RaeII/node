@@ -11,7 +11,7 @@ const path = require('path')
 //todos os arquivos são recebidos por uma requisição e passando pelo file
 http.createServer((req, res)=>{
     const file = req.url === '/' ? 'index.html' : req.url
-    const filePath = path.join(__dirname,'cuonline',file)
+    const filePath = path.join(__dirname,'urls',file)
     const extName = path.extname(filePath)
     
     const allowedFileTypes = ['.html','.css','.js','.png','.jpg','.jpeg','.svg']
