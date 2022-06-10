@@ -1,23 +1,74 @@
-const ul = document.querySelector(".url-elements")
-const input = document.querySelector("input")
-const form = document.querySelector('form')
+const userBtn = document.querySelector("#user")
+const listUser = document.querySelector(".container-users ul")
+// const input = document.querySelector("input")
+// const form = document.querySelector('form')
 
-async function load(name ,url ,action){
-    let res = ''
-    ul.innerHTML = "";
-    if(action == 'del'){
-            res = await fetch(`http://localhost:4000?name=${name}&url=${url}&del=1`).then((data) => data.json())
-    }else if(action == 'add'){
-            res = await fetch(`http://localhost:4000?name=${name}&url=${url}`).then((data) => data.json())
+//const { json } = require("body-parser")
 
-    }else {
-        res = await fetch("http://localhost:4000").then((data) => data.json())
-    }
+// async function load(name ,url ,action){
+//     let res = ''
+//     ul.innerHTML = "";
+//     if(action == 'del'){
+//             res = await fetch(`http://localhost:4000?name=${name}&url=${url}&del=1`).then((data) => data.json())
+//     }else if(action == 'add'){
+//             res = await fetch(`http://localhost:4000?name=${name}&url=${url}`).then((data) => data.json())
+
+//     }else {
+//         res = await fetch("http://localhost:4000").then((data) => data.json())
+//     }
                        
-    res.urls.map(url => addElement(url))
-}
-load()
+//     res.urls.map(url => addElement(url))
+// }
+// load()
 
+ //envio dos dados do usuario para o back
+ document.userRegister.onsubmit = async e =>{
+     e.preventDefault()
+
+     const form = e.target //elemnto que disparou o evento
+     const data = new FormData(form) //pega todos os dados pelo name
+     data.append('novoDado','true') //adiciona dados fora do form
+     
+     const options = {
+         method: form.method,
+         body: new URLSearchParams(data)
+     }
+
+    //   fetch('http://localhost:4500/register',options).then(resp => resp.json()).then(json =>{
+    //       console.log(json)})
+    //       .catch(e => {console.log(e)}) //tratar o erro no feth
+
+    try{
+       const resp = await fetch('http://localhost:4500/register',options) //tratando no async 
+       const json = await resp.json()
+       console.log(JSON.stringify(json))
+
+    }catch (e) {
+        console.log(e)
+    }
+      
+
+
+ }
+
+
+ userBtn.onclick = async () => {
+    try{
+        const resp = await fetch('http://localhost:4500/users') //tratando no async 
+        const json = await resp.json()
+        json.urls.map(user => showUser(user))
+ 
+     }catch (e) {
+         console.log(e)
+     }
+
+ }
+
+ const showUser = (ele) =>{
+    listUser = `<li><span>${ele.id}</span>${ele.name}</li>`
+ }
+
+  
 
 function addElement({ name, url }) {
     const li = document.createElement('li')
@@ -50,23 +101,23 @@ function removeElement(el) {
        load(name, url, 'del')
 }
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
+// form.addEventListener("submit", (event) => {
+//     event.preventDefault();
 
-    let { value } = input
+//     let { value } = input
 
-    if (!value) 
-        return alert('Preencha o campo')
+//     if (!value) 
+//         return alert('Preencha o campo')
 
-    const [name, url] = value.split(",")
+//     const [name, url] = value.split(",")
 
-    if (!url) 
-        return alert('formate o texto da maneira correta')
+//     if (!url) 
+//         return alert('formate o texto da maneira correta')
 
-    if (!/^http/.test(url)) 
-        return alert("Digite a url da maneira correta")
+//     if (!/^http/.test(url)) 
+//         return alert("Digite a url da maneira correta")
 
-        load(name, url, 'add')
+//         load(name, url, 'add')
 
-    input.value = ""
-})
+//     input.value = ""
+// })

@@ -3,37 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My URLS</title>
+    <title>Form user</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Cadastro</h1>
-
-    <form class="form-in" action="db.php?acao=inscricao" method="post" enctype="multipart/form-data">
+    <!-- <h1>Cadastro</h1> -->
+    <menu>
+        <ul>
+            <li id="user">
+                Usuários
+            </li>
+            <li>
+                Registrar
+            </li>
+        </ul>
+    </menu>
+    <form style="display: none;" class="form-in" name="userRegister" action="/userRegister" method="post" enctype="multipart/form-data">
         <div class="error" id="error"></div>
         <label for="nome">Nome</label>
-        <input type="text" autocomplete="none" id='nome' name="item[nome]" placeholder="Nome Completo" required value="">
+        <input type="text" autocomplete="none" id='nome' name="name" placeholder="Nome Completo" required value="">
 
         <label for="nome">E-mail</label>
-        <input type="email" name="item[email]" id='email' placeholder="Email" required value="">
+        <input type="email" name="email" id='email' placeholder="Email" required value="">
 
         <label for="nome">Instagram</label>
-        <input type="text" name="item[insta]" id='insta' placeholder="@" value=''>
+        <input type="text" name="insta" id='insta' placeholder="@" value=''>
 
         <label for="nome">Celular</label>
-        <input type="tel" name="item[telefone]" required id="tel" placeholder="(99) 999999999" value='' required>
+        <input type="tel" name="cell" required id="tel" placeholder="(99) 999999999" value='' required>
 
-        <input class="input file_customizada"  id='file' required name="arquivo" type="file">
+        <!-- <input class="input file_customizada"  id='file' required name="arquivo" type="file">
         <div><input class="radio" required type="radio" id="termo" name="item[termo]" value="aceito">
             Eu li e concordo com os <a href="http://" target="_blank">Termos e Políticas Privacidade</a> do site
-        </div>
+        </div> -->
         <button type="submit" class="btn" id='btn'>Enviar</button>
     </form>
 
-    <ul class="container url-elements">
-    <li>Never forget another url</li> 
-    </ul>
+    <section id="users">
+        <div class="container-users">
+          <ul>
     
+              
+          </ul>
+        </div>
+    </section>
+
     <script src="js/scripts.js"></script>
 </body>
 </html>
