@@ -31,8 +31,16 @@ function writeFile(cb){
      res.send(JSON.stringify(data))
    })
 
-app.post('/register', function(req, res){
+   app.get('/user', (req, res, nex)=>{
+    const {id} = URL.parse(req.url,true).query
+    user = data.urls.filter(item => parseInt(item.id) == parseInt(id))
+            
+              return res.end(JSON.stringify(user))
+             
+  })
 
+app.post('/register', function(req, res){
+          
           data.urls.push(req.body)  
           writeFile((data)=>{
           res.end(JSON.stringify(data))
