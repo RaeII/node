@@ -13,12 +13,12 @@
             <li id="user">
                 Usuários
             </li>
-            <li>
+            <li id="register">
                 Registrar
             </li>
-        </ul>
+        </ul>   
     </menu>
-    <form style="display: none;" class="form-in" name="userRegister" action="/userRegister" method="post" enctype="multipart/form-data">
+    <form  class="form-in" name="userRegister" action="/userRegister" method="post" enctype="multipart/form-data">
         <div class="error" id="error"></div>
         <label for="nome">Nome</label>
         <input type="text" autocomplete="none" id='nome' name="name" placeholder="Nome Completo" required value="">
@@ -48,7 +48,16 @@
         </div>
 
         <div class="info-user none">
+    
              <span class="close-user">x</span>
+             <p id="name-user">Nome não informado</p>
+             <p id="email-user">israel.zeferino@hotmail.com</p>
+             <p id="insta-user">@rael_zefe</p>
+             <p id="cell-user">(48) 998574630</p>
+
+             <div class="btns-users">
+                  <button class="btn-del-user">Deletar</button> <button class="btn-edit-user">Editar</button>
+             </div>
         </div>
     </section>
     <script src="js/jquery.js"></script>

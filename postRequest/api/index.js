@@ -35,22 +35,23 @@ function writeFile(cb){
     const {id} = URL.parse(req.url,true).query
     user = data.urls.filter(item => parseInt(item.id) == parseInt(id))
             
-              return res.end(JSON.stringify(user))
+              return res.end(JSON.stringify(user[0]))
              
   })
 
 app.post('/register', function(req, res){
-          
-          data.urls.push(req.body)  
-          writeFile((data)=>{
-          res.end(JSON.stringify(data))
-          })
+            var dados = JSON.parse(JSON.stringify(data.urls))
+           var idNew = parseInt(dados[dados.length - 1].id) + 1
+           req.body =({...req.body,id:idNew})
 
-  res.send({
-    // ...req.body,id:1
+             data.urls.push(req.body)  
+             writeFile((data)=>{
+             res.end(JSON.stringify(data))
+            })
 
-           
-  })
+  res.send(
+    data
+  )
 
 });
 

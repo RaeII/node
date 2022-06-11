@@ -1,5 +1,7 @@
 const userBtn = $("#user");
+const register = $("#register")
 const listUser = $(".container-users ul");
+const ContainerlistUser = $(".container-users");
 // const input = document.querySelector("input")
 // const form = document.querySelector('form')
 
@@ -34,20 +36,21 @@ document.userRegister.onsubmit = async (e) => {
     body: new URLSearchParams(data),
   };
 
-  //   fetch('http://localhost:4500/register',options).then(resp => resp.json()).then(json =>{
-  //       console.log(json)})
-  //       .catch(e => {console.log(e)}) //tratar o erro no feth
+    fetch('http://localhost:4500/register',options).then(resp => resp.json()).then(json =>{
+        console.log(json)})
+        .catch(e => {console.log(e)}) //tratar o erro no feth
 
-  try {
-    const resp = await fetch("http://localhost:4500/register", options); //tratando no async
-    const json = await resp.json();
-    console.log(JSON.stringify(json));
-  } catch (e) {
-    console.log(e);
-  }
+  // try {
+  //   const resp = await fetch("http://localhost:4500/register", options); //tratando no async
+  //   const json = await resp.json();
+  //   console.log(JSON.stringify(json));
+  // } catch (e) {
+  //   console.log(e);
+  // }
 };
 
 //**fazer verficação ao clicar e estiver carregada não fazer varias soliciações ao banco
+//todos os usuarios
 userBtn.click(async () => {
   try {
     const resp = await fetch("http://localhost:4500/users"); //tratando no async
@@ -55,35 +58,65 @@ userBtn.click(async () => {
     listUser.html("");
     json.urls.map((user) => loadUser(user));
 
+    ContainerlistUser.removeClass('none') 
+    setTimeout(() => {
+       ContainerlistUser.removeClass('cai-fora') 
+    }, 200);
+    
+    //fazer função separado
+    $('.form-in').addClass('cai-fora-form')
+    setTimeout(() => {
+      $('.form-in').addClass('none')
+   }, 1000);
+
     const user = $(".user");
     showUser(user);
 
+
+    
+    //fazer funcão separado
     $(".user").click(function(){
         var id = $(this).attr('data-id')
         dataUser(id)
 
-        $('.container-users').addClass('cai-fora') 
+        ContainerlistUser.addClass('cai-fora') 
         setTimeout(() => {
-             $('.container-users').addClass('none')
-          }, 1000);
+          ContainerlistUser.addClass('none')
+        }, 1000);
 
-          $('.info-user').removeClass('none')
-          setTimeout(() => {
+        $('.info-user').removeClass('none')
+        setTimeout(() => {
             $('.info-user').addClass('info-user-show')
-         }, 300);
+        }, 300);
     })
+    //
 
   } catch (e) {
     console.log(e);
   }
 });
 
+//carrega todos usuarios para o front
 const loadUser = (ele) => {
   listUser.prepend(`<li data-id="${ele.id}" class="user"><span>${ele.id}</span>${ele.name}</li>`);
 };
 
+//abre registro
+register.click(()=>{
+    ContainerlistUser.addClass('cai-fora') 
+    setTimeout(() => {
+        ContainerlistUser.addClass('none')
+    }, 1000);
+
+    $('.form-in').removeClass('none')
+    setTimeout(() => {
+      $('.form-in').removeClass('cai-fora-form')
+   }, 200);
+})
+
+//animação de aprensentação dos usuarios
 const showUser = (user) => {
-  var tempo = 0;
+  var tempo = 250;
   $(user).each((index, ele) => {
     setTimeout(() => {
       $(ele).addClass("showUser");
@@ -92,8 +125,8 @@ const showUser = (user) => {
   });
 };
 
+//fecha as informações do usuario
 $('.close-user').click(()=>{
-
      $('.container-users').removeClass('none')
     setTimeout(() => {
          $('.container-users').removeClass('cai-fora')
@@ -104,14 +137,18 @@ $('.close-user').click(()=>{
           setTimeout(() => {
          $('.info-user').addClass('none')   
          }, 500);
-
 })
 
 const dataUser = async (id) => {
     try {
         const resp = await fetch(`http://localhost:4500/user?id=${id}`); //tratando no async
         const json = await resp.json();
-        console.log(json)
+
+        $('#name-user').html(json.name)
+        $('#email-user').html(json.email)
+        $('#insta-user').html(json.insta)
+        $('#cell-user').html(json.cell)
+
     
       } catch (e) {
         console.log(e);
