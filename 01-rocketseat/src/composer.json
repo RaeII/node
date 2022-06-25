@@ -1,0 +1,26 @@
+{
+    "require": {
+        "erandir/plug-route": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Front\\Controller\\": "front/controller",
+            "Front\\Service\\": "front/service",
+            "Front\\DataBase\\": "front/db",
+            "Api\\Controller\\": "apis/controller",
+            "Api\\Service\\": "apis/service",
+            "Api\\Config\\": "apis/config",
+            "Api\\Factory\\": "apis/factory",
+            "Api\\Helpers\\": "apis/helpers",
+            "Api\\Interfaces\\": "apis/interfaces",
+            "Api\\": "apis",
+            "Controller\\": "controller",
+            "Middleware\\": "middleware",
+            "Middleware\\Auth\\": "middleware/auth",
+            "DataBase\\": "db",
+            "Service\\": "service",
+            "Core\\": "core",
+            "Util\\": "util"
+        }
+    }
+}
