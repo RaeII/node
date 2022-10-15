@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;700&display=swap');
+body{
+    margin: 0;
+}
+#image-content{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: blue;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: normal !important;
+    line-height: 108%;
+  }
+
+.aside-panel {
+    position: relative;
+    width: 475px;
+    display: flex;
+    justify-content: start;
+    background-color: #6118EE;
+    color: #EEE6FC;
+    font-family: "Poppins";
+    min-width: 475px;
+    padding: 52px 0 0 52px;
+    overflow: hidden;
+  }
+
+  .content-panel {
+    width: calc(475px - 52px);
+    height: calc(100vh - 52px);
+    top: 52px;
+    left: 52px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    transition: .5s cubic-bezier(.39,.51,.53,.95);
+  }
+
+  .aside-panel {
+    color: #EEE6FC;
+    font-family: "Poppins";
+  }
+
+  .pre-title {
+    font-size: 16px;
+    padding: 0 0 5px 0;
+  }
+
+  .content-panel h1 {
+    font-size: 40px;
+    text-align: start;
+    font-weight: bold;
+    width: 345px;
+    line-height: 108%;
+    padding: 0 0 24px 0;
+  }
+
+  .infos {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .infos p:nth-child(1) {
+    align-self: flex-end;
+    font-size: 12px;
+    padding: 0 17px 0 0;
+  }
+
+  .infos p:nth-child(2) {
+    font-size: 16px;
+    width: 159px;
+    line-height: 108%;
+  }
+  .infos p:nth-child(1) {
+    align-self: flex-end;
+    font-size: 12px;
+    padding: 0 17px 0 0;
+  }
+  .infos div p {
+    font-size: 16px !important;
+    width: 270px !important;
+  }
+  .infos div p {
+    font-size: 16px !important;
+    width: 270px !important;
+  }
+
+  .footer-img-aside {
+    position: absolute;
+    padding-top: 40px;
+    flex: 1;
+    align-self: center;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    left: calc(50% - 52px);
+    transform: translate3d(-50%,0,0);
+    bottom: 56px;
+  }
